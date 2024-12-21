@@ -63,4 +63,11 @@ contract CakeShop is ERC20, Ownable {
     function burn(uint256 amount) external {
         _burn(msg.sender, amount);
     }
+
+    // Custom transfer function
+    function transferTokens(address to, uint256 amount) public returns (bool) {
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance.");
+        _transfer(msg.sender, to, amount);
+        return true;
+    }
 }
